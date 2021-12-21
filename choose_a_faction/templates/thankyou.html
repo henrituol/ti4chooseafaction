@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block introduction %}
+<br>
+Thank you for using TI4 tools. Remember to send the link of your game to your friends:  <a href="{{linkToGame}}">{{linkToGame}}</a>.
+<br><br>
+When all of the participants have selected their factions, results will be sent to you via email. The data you have given (i.e. email, factions), will be deleted immediately after sending the results. If the game do not receive full number of players in one week, emails won't be sent and the user input received thus far will be deleted from the database.
+{% endblock %}

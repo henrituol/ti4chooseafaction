@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block introduction %}
+<br>
+Here's the link for your game: <a href="{{linkToGame}}">{{linkToGame}}</a>. Send this link to your friends.<br><br>
+When {{numberOfPlayers}} players have filled their email and selected their preffered factions,
+a raffle will take place and results will be sent via email to each participant.
+If you haven't received an email even though you think you should have, check your spam folder.
+{% endblock %}
+
+{% block button %}<button type="submit">Next</button>{% endblock %}
