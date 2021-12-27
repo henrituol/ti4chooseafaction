@@ -119,7 +119,7 @@ def sendResults(playersInDatabase):
         recipient = [i.email] # Must be a list
 
         # For testing purposes.
-        print(subject + message + fromEmail + str(recipient))
+        # print(subject + message + fromEmail + str(recipient))
         """ Enable this in production. """
         send_mail(subject, message, fromEmail, recipient)
 
