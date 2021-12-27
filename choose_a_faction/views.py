@@ -100,7 +100,10 @@ def emailform(request, numberOfPlayers, numberOfNegativeWeights, game_id):
             # To render number as a word in the HTML view. Looks better than just a number.
             numberAsWord = numberToWord(numberOfPlayers)
             # So as to make sure that a link is easy to send forward, it might be a good idea to show it in the instructions in the beginning of the page.
-            linkToGame = str(request.build_absolute_uri())
+            # linkToGame = str(request.build_absolute_uri())
+            # linkToGame = linkToGame.replace("thank-you-for-using-TI4-tools/", "")
+
+            linkToGame = "https://ti4.functional.technology/" +str(numberOfPlayers)+'-'+str(numberOfNegativeWeights)+'-'+str(game_id)+'/'
 
             return render(request, 'playerinitialize.html', {'form': form, "numberOfPlayers":numberAsWord, "linkToGame":linkToGame})
 
@@ -549,7 +552,9 @@ def negativeweightsform(request, numberOfPlayers, numberOfNegativeWeights, game_
 
 def thankyoupage(request, numberOfPlayers, numberOfNegativeWeights, game_id):
 
-    linkToGame = str(request.build_absolute_uri())
-    linkToGame = linkToGame.replace("thank-you-for-using-TI4-tools/", "")
+    # linkToGame = str(request.build_absolute_uri())
+    # linkToGame = linkToGame.replace("thank-you-for-using-TI4-tools/", "")
+
+    linkToGame = "https://ti4.functional.technology/" +str(numberOfPlayers)+'-'+str(numberOfNegativeWeights)+'-'+str(game_id)+'/'
 
     return render(request, 'thankyou.html', {"linkToGame":linkToGame})
