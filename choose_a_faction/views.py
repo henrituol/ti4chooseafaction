@@ -36,7 +36,8 @@ def mainform(request):
 
             # Save as a string to enable concatenation in redirect.
             numberOfPlayers = str(form.cleaned_data['numberOfPlayers'])
-            numberOfNegativeWeights = str(form.cleaned_data['numberOfNegativeWeights'])
+            # numberOfNegativeWeights = str(form.cleaned_data['numberOfNegativeWeights'])
+            numberOfNegativeWeights = '0'
 
             # Generate an individual ID for the game.
             game_id = str(random.randint(100000000, 999999999))
