@@ -55,49 +55,63 @@ def toThankYouPage(numberOfPlayers, numberOfNegativeWeights, game_id):
 #-----------------------------------------------------------------------------#
 def raffleTime(playersInDatabase, numberOfPlayers):
     # Deal out the factions.
-    # First, just randomly, but without overlap.
-    # Later, add negative weights and order of factions to calculations.
 
     # Not sure, if this is the most elegant approach, but:
-    # 1. Choose a random faction for the first player.
+    # 1. Choose a faction for the first player. First selection has the highest probability of being chosen etc.
     # 2. Continue to next one making sure there are no clashes.
 
     savedFactions = []
 
     for i in playersInDatabase:
-        # print(i.id)
 
-        # from faction1-faction8 take random non blank.
         factions = [i.faction1, i.faction2, i.faction3, i.faction4, i.faction5, i.faction6, i.faction7, i.faction8]
-        # Turn into a set, so that all the blanks reduce into one value.
-        factions = set(factions)
-        # Now we can use remove to delete the one blank. (remove() only removes the first instance, hence the list containing multiple blanks isn't optimal.)
-        # Because of the eight player game option, where there are no blanks, we need a if statement here.
-        if numberOfPlayers != 8:
-            factions.remove('')
-        # Change back into a list to enable random.choice().
-        factions = list(factions)
-        # print(factions)
-        randomFaction = random.choice(factions)
-        # print(randomFaction)
+
+        # Remove blanks in less than 8-player games.
+        factions = list(filter(None, factions))
+
+        # Totally random vs. weighted raffle
+        #randomFaction = random.choice(factions)
+        randomFaction = weightedRaffle(factions)
 
         i.resultFaction = randomFaction
         i.save()
         savedFactions.append(randomFaction)
-
-        # print(savedFactions)
+        print(randomFaction)
 
         # Make sure it doesn't clash with those already saved.
         while savedFactions.count(randomFaction) > 1:
             # Change i's resultFaction.
-            randomFaction = random.choice(factions)
+            #randomFaction = random.choice(factions)
+            randomFaction = weightedRaffle(factions)
             savedFactions.append(randomFaction)
             i.resultFaction = randomFaction
+            print(randomFaction)
         i.save()
 
     # After dealing out the factions, send results via email.
     sendResults(playersInDatabase)
 
+#-----------------------------------------------------------------------------#
+#
+# Weighted raffle addon to the Raffle Time.
+#-----------------------------------------------------------------------------#
+def weightedRaffle(factions):
+
+    # How many factions there are in the list?
+    numberOfSelectedFactions = len(factions)
+
+    # Relative probabilities
+    probabilities = [64, 32, 16, 8, 4, 2, 1, 1]
+
+    #
+    weightsOfFactions = probabilities[:numberOfSelectedFactions]
+
+    # Select a random faction within set probabilities.
+    resultFaction = random.choices(factions, weights = weightsOfFactions, k = 1)
+    # The above code is a list containing one element. How to access the element straight? I suppose, this is the way:
+    resultFaction = resultFaction[0]
+
+    return resultFaction
 
 #-----------------------------------------------------------------------------#
 #
