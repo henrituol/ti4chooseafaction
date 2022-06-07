@@ -33,7 +33,7 @@ class MainForm(forms.Form):
 
     numberOfPlayers = forms.IntegerField(label='Number of players', min_value=3, max_value=8, initial="3")
 
-    numberOfNegativeWeights = forms.IntegerField(label='For how many factions would you like to use negative weights?', min_value=0, max_value=8, initial="0")
+    # numberOfNegativeWeights = forms.IntegerField(label='For how many factions would you like to use negative weights?', min_value=0, max_value=8, initial="0")
 
 #-----------------------------------------------------------------------------#
 
