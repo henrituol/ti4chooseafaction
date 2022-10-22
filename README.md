@@ -1,5 +1,9 @@
 # TI4 Tools: Choose a faction
 
+Django Python exercise #1. Please note that the forms need refactoring – this was my first attempt at making a Django web app, and I was unaware of the more optimal way of creating such a form based app in Django. Nevertheless, utils.py in ti4chooseafaction/choose_a_faction/ might be a good place to get a glance of how I've been coding Python.
+
+--- 
+
 Welcome to a faction selection tool for Twilight Imperium 4!
 In this tool you can set up a game and a unique game ID will be created for you, which you can share with your friends. Each player is asked to select factions they would like to play. Results will be sent via email (from ti4chooseafaction@gmail.com) to each player.
 
