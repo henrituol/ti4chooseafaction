@@ -2,6 +2,8 @@
 
 My Django Python exercise #1. Please note that the forms need refactoring – this was my first attempt at making a Django web app, and I was unaware of the more optimal way of creating such a form based app in Django. Nevertheless, utils.py in ti4chooseafaction/choose_a_faction/ might be a good place to get a glance of how I've been coding Python.
 
+You can try the application here: https://ti4.functional.technology/
+
 --- 
 
 Welcome to a faction selection tool for Twilight Imperium 4!
